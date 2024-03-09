@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "runtailwind": "pnpx tailwindcss -i ./static/src/input.css -o ./static/css/output.css --watch"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

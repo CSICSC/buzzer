@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block script %}
+<script src="//unpkg.com/alpinejs" defer></script>
+<script src="https://unpkg.com/htmx.org"></script>
+<script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+<script defer>
+  htmx.on('htmx:wsConfigSend', function (evt) {
+    const data = evt.target.closest('[x-data]')._x_dataStack[0]
+    evt.detail.messageBody = `${document.cookie.split(';')[0].split('=')[1]}:${data.locked ? 'locked' : 'unlocked'}`
+    console.log(evt.detail)
+  });
+
+</script>
+{% endblock %}
+
+{% block content %}
+<main class="flex flex-col items-center justify-center h-lvh p-10" x-data="{ locked: false }" hx-ext="ws" ws-connect="/buzzer-lock">
+  <h1>Room: {{ code }}</h1>
+  <div :class="{ 'bg-red-500': !locked, 'bg-gray-400': locked }" @click="locked = !locked" ws-send="click" class="rounded-full w-[500px] h-[500px]  cursor-pointer flex items-center justify-center">
+    <p class="text-4xl font-bold text-white"  x-text="locked ? '🔒 locked' : '🔓 unlocked'"></p>
+  </div>
+</main>
+{% endblock %}

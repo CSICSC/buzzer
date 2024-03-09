@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block script %}
+<script src="https://unpkg.com/htmx.org"></script>
+{% endblock %}
+
+{% block content %}
+<main class="flex flex-col items-center justify-center h-lvh p-10">
+  <img src="{{url_for('static', filename='images/csc_logo.png')}}" class="w-[200px]"/>
+  <h1 class="text-2xl font-bold mb-8">CSI Computer Science Club Jeopardy Buzzer 🖲️</h1>
+  <a href="/buzzer-controller">
+    <button class="font-bold bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 mb-5">Create new room</button>
+  </a>
+  <form>
+    <ul class="w-[300px]">
+      <li class="flex flex-col mb-3">
+        <label for="room_name">📜 Room Code:</label>
+        <input id="room_name" name="room_name" placeholder="room code..." class="border-2 rounded ps-2 h-[50px] mt-1 focus:border-blue-300 outline-none text-gray-500 placeholder:text-gray-500">
+      </li>
+      <li class="flex flex-col mb-3">
+        <label for="team_name">💀 Team Name:</label>
+        <input id="team_name" name="team_name" placeholder="team name..." class="border-2 rounded ps-2 h-[50px] mt-1 focus:border-blue-300 outline-none text-gray-500 placeholder:text-gray-500">
+      </li>
+      <li>
+        <button type="button" class="font-bold bg-green-500 text-white px-4 py-1 rounded-lg hover:bg-green-600 mb-5">Join</button>
+      </li>
+    </ul>
+  </form>
+</main>
+{% endblock %}
